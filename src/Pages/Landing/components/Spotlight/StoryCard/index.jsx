@@ -1,4 +1,5 @@
 import React from "react";
+import { HiMiniArrowRight } from "react-icons/hi2";
 import "./style.css";
 
 const StoryCard = ({ title, subTitle, backgroundImg }) => {
@@ -8,9 +9,11 @@ const StoryCard = ({ title, subTitle, backgroundImg }) => {
         className="story_card"
         style={{ backgroundImage: `url(${backgroundImg})` }}
       >
-        <p className="title">{title?.toUpperCase()}</p>
+        <p className="title mb-1">{title?.toUpperCase()}</p>
         <p className="sub_title">{subTitle}</p>
-        <button className="arrow_right"></button>
+        <button className="arrow_right">
+          <HiMiniArrowRight />
+        </button>
       </div>
     </>
   );

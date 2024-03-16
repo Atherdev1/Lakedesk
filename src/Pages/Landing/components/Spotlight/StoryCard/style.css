@@ -9,30 +9,26 @@
 }
 .story_card .title{
     color: white;
-    font-size: 18px;
-    font-family: "Poppins", sans-serif;
+    font-size: 12px;
     font-weight: 300;
-    font-style: normal;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
 }
 .story_card .sub_title{
     color: white;
-    font-size: 24px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-size: 14px;
+    /* font-family: "Poppins", sans-serif; */
     font-style: normal;
-    letter-spacing: 2px;
+
 }
 .story_card .arrow_right{
-    width: 80px;
-    height: 80px;
-    border: none;
-    background-image: url('../../../../../Assets/Landing/right_arrow.svg');
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+    border: 2px solid white;
+    color: white;
+    border-radius: 50%;
     background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position:0px;
     position: absolute;
-    bottom: 36px;
-    right: 40px;
+    bottom: 20px;
+    right: 20px;
 }

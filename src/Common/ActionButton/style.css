@@ -1,0 +1,13 @@
+.action_btn{
+    border: none;
+    text-wrap: nowrap;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+.action_btn:hover{
+    background-color: #2a32a1 !important;
+}
