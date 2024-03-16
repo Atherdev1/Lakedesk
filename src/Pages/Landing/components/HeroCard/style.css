@@ -1,0 +1,37 @@
+.hero_card{
+    width: 100%;
+    height: 72vw;
+    max-height: 500px;
+    background-image: url('../../../../Assets/Landing/hero_img.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: lighten;
+}
+.hero_text{
+    color: black;
+    font-size: clamp(1.5rem, 0.4545rem + 5.2273vw, 4.375rem);
+    font-weight: 700;
+}
+.action_text{
+    padding: 20px;
+}
+.helper_text{
+    color: rgb(61, 61, 61);
+    font-size: clamp(1.125rem, 0.9886rem + 0.6818vw, 1.5rem);
+    text-shadow: 0px 1px 3px black;
+}
+.ai{
+    font-weight: 900;
+}
+.fut{
+    color: #4E5AFE;
+}
+
+/* media query >= 768 */
+
+@media screen and (min-width:768px){
+    .action_text{
+        padding: 70px;
+    }
+}

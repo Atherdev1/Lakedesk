@@ -1,7 +1,7 @@
 .spotlight_container{
   background-image: url('../../../../Assets/Landing/Rectangle\ 5.svg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   width: 100%;
   padding: 70px;
 }
