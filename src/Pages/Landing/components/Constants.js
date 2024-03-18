@@ -51,23 +51,62 @@ export const stories = [
 
 export const landingMenuOPtions = [
   {
-    label:'Why Choose Us',
-    navigateTo:'/why-choose-us'
+    label: "Why Choose Us",
+    navigateTo: "/why-choose-us",
   },
   {
-    label:'Product',
-    navigateTo:'/product'
+    label: "Product",
+    navigateTo: "/product",
   },
   {
-    label:'Solutions',
-    navigateTo:'/solutions'
+    label: "Solutions",
+    navigateTo: "/solutions",
   },
   {
-    label:'Resources',
-    navigateTo:'/resources'
+    label: "Resources",
+    navigateTo: "/resources",
   },
   {
-    label:'About',
-    navigateTo:'/about'
+    label: "About",
+    navigateTo: "/about",
   },
-]
+];
+
+export const useCaseOptions = [
+  "AI",
+  "Governance",
+  "Warehousing",
+  "ETL",
+  "Data sharing",
+  "Orchestration",
+];
+
+export const openDataSharingList = [
+  "No proprietary formats or expensive replication",
+  "No complicated ETL",
+  "Monetize sharing with the Databricks Marketplace",
+];
+export const footerMenu = {
+  Platform: [
+    "Data engineering",
+    "Gen AI",
+    "Machine learning",
+    "Action analytics",
+    "Workflow & automation",
+    "Change Data Capture",
+    "Data ingestion",
+    "Streaming analytics",
+  ],
+  'Resources': [
+    "Whitepapers",
+    "Case Studies",
+    "Flyers",
+    "Brochures",
+    "Infographic",
+    "Videos",
+    "Blogs",
+    "Events",
+  ],
+  'Company': ["About us", "Newsroom"],
+  'Get In Touch': ["Contact us", "Schedule demo", "Start trial", "Login"],
+};

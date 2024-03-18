@@ -1,0 +1,33 @@
+.searchbar_container{
+    background-color: white;
+    border: 1px solid #D0DEF3;
+    width: 100%;
+    max-width: 365px;
+    height:46px;
+    border-radius: 23px;
+    position: relative;
+}
+
+.searchbar_container input{
+    height: 100%;
+    width: 100%;
+    border-radius: 23px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px 108px 0px 10px;
+}
+.searchbar_container button{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #4E5AFE;
+    border: none;
+    padding:4px 10px ;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 15px;
+}

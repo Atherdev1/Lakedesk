@@ -1,0 +1,32 @@
+
+.raw_container{
+    margin:50px 0;
+    padding: 20px;
+}
+.data_card{
+    width: 100%;
+  background: linear-gradient(to right, #4E80FE 0%, #ADEBF9 100%);;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    padding: 20px;
+}
+.data_card p{
+    color: black;
+    font-size: clamp(1.125rem, 0.8977rem + 1.1364vw, 1.75rem);
+    font-weight: 800;
+}
+.data_card p span{
+    color: black;
+    font-size: clamp(1.125rem, 0.8977rem + 1.1364vw, 1.75rem);
+    font-weight: normal;
+}
+
+@media screen and (min-width:1200px) {
+    .raw_container{
+        padding: 0 70px;
+    }
+    .data_card{
+        padding: 50px;
+    }
+}
+
