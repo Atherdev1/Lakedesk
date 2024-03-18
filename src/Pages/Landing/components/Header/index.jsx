@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import brand from "../../../../Assets/Landing/logo.svg";
+import brand from "../../../../Assets/Landing/logo.png";
 import "./style.css";
 import DrawerMenu from "./DrawerMenu";
 import { CiGlobe } from "react-icons/ci";
@@ -34,7 +34,7 @@ const Header = () => {
       <nav className="d-flex justify-content-between align-items-center">
         <div className="brand_section d-flex align-items-center">
           {windowSize.width < 992 && <DrawerMenu />}
-          <img className="brand" src={brand} alt="brand" />
+          <img className="brand ms-2 m-lg-0" src={brand} alt="brand" />
           {windowSize.width >= 992 && (
             <ul className="menu_list gap-4 m-0">
               {landingMenuOPtions?.map((menu) => {

@@ -1,0 +1,43 @@
+.use_cases_container{
+    padding: 20px;
+}
+.use_cases_container .nav-tabs{
+    display: flex !important;
+    justify-content: center !important;
+    border-bottom: none !important;
+    font-size: 14px;
+    font-weight: 800px;
+    text-wrap: nowrap;
+    color: black !important;
+
+}
+.use_cases_container .nav-item{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    min-width: 100px;
+    color: black !important;
+}
+.use_cases_container .nav-item button{
+    color:  black !important;
+    font-size: 14px;
+    font-weight: 600px;
+}
+.use_cases_container .use_cases_container .nav-tabs .nav-link {
+    border: none !important;
+    border-radius: 16px !important;
+    padding: 4px 20px !important;
+    width: 100% !important;
+}
+.use_cases_container .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: white !important;
+    border-radius: 16px !important;
+    background-color: #4E5AFE !important;
+    padding: 4px 20px !important;
+    width: 100% !important;
+}
+@media screen and (min-width:1200px) {
+    .use_cases_container{
+        padding:70px 200px;
+    }
+}

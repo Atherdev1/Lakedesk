@@ -6,7 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Image from "react-bootstrap/Image";
 import { landingMenuOPtions } from "../../Constants";
 import { IoClose } from "react-icons/io5";
-import brand from "../../../../../Assets/Landing/logo.svg";
+import brand from "../../../../../Assets/Landing/logo.png";
 import { useNavigate } from "react-router-dom";
 
 const DrawerMenu = () => {

@@ -6,8 +6,8 @@
     width: 100%;
 }
 .footer_brand .brand_image{
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    margin-bottom: 20px;
 }
 .social_icons img{
     width: 18px;

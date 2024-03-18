@@ -1,3 +1,10 @@
+import dataIntegration from "../../../Assets/Landing/data_integration.svg";
+import machineLearning from "../../../Assets/Landing/machine_learning.svg";
+import genrativeAI from "../../../Assets/Landing/genrative_ai.svg";
+import actionAnalytics from "../../../Assets/Landing/action_analytics.svg";
+import workflow from "../../../Assets/Landing/workflow.svg";
+import businessApps from "../../../Assets/Landing/business_apps.svg";
+
 export const stories = [
   {
     title: "Title here",
@@ -97,7 +104,7 @@ export const footerMenu = {
     "Data ingestion",
     "Streaming analytics",
   ],
-  'Resources': [
+  Resources: [
     "Whitepapers",
     "Case Studies",
     "Flyers",
@@ -107,6 +114,141 @@ export const footerMenu = {
     "Blogs",
     "Events",
   ],
-  'Company': ["About us", "Newsroom"],
-  'Get In Touch': ["Contact us", "Schedule demo", "Start trial", "Login"],
+  Company: ["About us", "Newsroom"],
+  "Get In Touch": ["Contact us", "Schedule demo", "Start trial", "Login"],
 };
+
+export const testimonials = [
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#F0F1FF",
+  },
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#E8FFFC",
+  },
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#FEF6DC",
+  },
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#F0F1FF",
+  },
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#E8FFFC",
+  },
+  {
+    profileImage:
+      "https://accountmanagement.gettyimages.com/Account/ProfileImage/8b931d4f-f756-4ae1-9380-e4ed329a4ce1.jpg",
+    message:
+      "Lorem ipsum is a placeholder text commonly placeholder text commonly",
+    name: "Garry Ford",
+    role: "CEO Ford",
+    backgroundColor: "#E8FFFC",
+  },
+];
+
+export const features = [
+  {
+    text: "No-code for data at scale, batch and streaming",
+  },
+  {
+    text: "Gen AI help to search, understand, query, and build easily",
+  },
+  {
+    text: "250+ connectors,200+ operators,50+ apps andsolution blueprints",
+  },
+  {
+    text: "No-code for data at scale, batch and streaming",
+  },
+  {
+    text: "No-code for data at scale, batch and streaming",
+  },
+];
+
+export const capabilities = [
+  {
+    backgroundImg: dataIntegration,
+    backgroundColor: "#E0FBFF",
+    text: "Data integration",
+  },
+  {
+    backgroundImg: machineLearning,
+    backgroundColor: "#CBFDB4",
+    text: "Machine learning",
+  },
+  {
+    backgroundImg: genrativeAI,
+    backgroundColor: "#F5E0FF",
+    text: "Genrative AI",
+  },
+  {
+    backgroundImg: actionAnalytics,
+    backgroundColor: "#EBECE3",
+    text: "Action Analytics",
+  },
+  {
+    backgroundImg: workflow,
+    backgroundColor: "#FFD6E4",
+    text: "Workflow ",
+  },
+  {
+    backgroundImg: businessApps,
+    backgroundColor: "#E3F66B",
+    text: "Business Apps",
+  },
+];
+
+export const useCasesTabs = [
+  {
+    id: "ai",
+    label: "AI",
+  },
+  {
+    id: "governanace",
+    label: "Governa",
+  },
+  {
+    id: "warehousing",
+    label: "Warehousing",
+  },
+  {
+    id: "etl",
+    label: "ETL",
+  },
+  {
+    id: "dataSharing",
+    label: "Data Sharing",
+  },
+  {
+    id: "orchestration",
+    label: "Orchastration",
+  },
+];
