@@ -1,4 +1,4 @@
-import brand from "../../../../Assets/Landing/logo.svg";
+import brand from "../../../../Assets/Landing/logo.png";
 import linkedIn from "../../../../Assets/Landing/Linkedin.svg";
 import youtube from "../../../../Assets/Landing/youtube.svg";
 import instagram from "../../../../Assets/Landing/insta.svg";

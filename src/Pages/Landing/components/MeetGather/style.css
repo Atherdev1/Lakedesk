@@ -1,0 +1,79 @@
+    .meet_container{
+    background-image: linear-gradient(#F4FAFF, #7FB3CA, #F4FAFF);
+    padding: 20px;
+}
+.meet_card{
+    background-color: white;
+    border: 1px solid #C7DDFD;
+    border-radius: 20px;
+    padding: 20px;
+}
+.feature_card{
+    font-size: 14px;
+    font-weight: 500;
+}
+.feature_card span{
+    font-size: clamp(1.25rem, 1.1591rem + 0.4545vw, 1.5rem);
+}
+.capabilties_line {
+    position: relative;
+    text-align: center;
+    margin-top: 50px; 
+}
+.hr-with-badge {
+    border: none;
+    height: 1px; 
+    background-color: #000; 
+}
+
+.badge_label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4E5AFE;
+    color: #fff; 
+    padding: 2px 50px;
+    border-radius: 20px; 
+    font-size: clamp(0.625rem, 0.4886rem + 0.6818vw, 1rem);
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.capability_card{
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    min-height: 128px;
+}
+.capability_image{
+    width: 28%;
+    max-width: 36px;
+    height: 45px;
+}
+
+/* media query >= 992px */
+
+@media screen and (min-width:992px) {
+    .capability_card{
+        min-height: 148px;
+    }
+}
+
+/* media query 0px - 1200px */
+
+@media screen and (min-width:1200px) {
+    .meet_container{
+      padding: 70px;
+    }
+}
+

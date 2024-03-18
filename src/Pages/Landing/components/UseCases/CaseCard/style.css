@@ -1,0 +1,27 @@
+.case_card{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 50px;
+}
+.case_heading{
+    color: black;
+    font-size: clamp(1.125rem, 0.9886rem + 0.6818vw, 1.5rem);
+    font-weight: 800;
+}
+.case_text{
+    font-size: clamp(1rem, 0.9545rem + 0.2273vw, 1.125rem);
+    font-weight: 500;
+}
+.uses_list{
+    list-style-type: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+.case_image{
+    width: 100%;
+    max-width: 600px;
+}
+.case_image img{
+    width: 100%;
+}
