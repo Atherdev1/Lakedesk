@@ -252,3 +252,10 @@ export const useCasesTabs = [
     label: "Orchastration",
   },
 ];
+
+export const imageData = [
+  "https://app.gathr.one/assets/images/home-banner-1.png",
+  "https://app.gathr.one/assets/images/home-banner-2.png",
+  "https://app.gathr.one/assets/images/home-banner-3.png",
+  "https://app.gathr.one/assets/images/home-banner-3.png",
+];

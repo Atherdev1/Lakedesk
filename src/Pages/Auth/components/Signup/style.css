@@ -1,0 +1,36 @@
+.input_box > label{
+    font-size: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
+    font-weight: 600;
+}
+.input_box > label span{
+    color: red;
+    font-size: 18px;
+}
+.input_group{
+    border: 2px solid lightgray;
+    border-radius: 4px;
+    position: relative;
+}
+.input_group .icon{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.input_group input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 6px 30px;
+    font-size: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
+    font-weight: 500;
+    margin: 0;
+    outline: none;
+}
+.input_group .eye_icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
