@@ -29,7 +29,7 @@
     padding: 4px 20px !important;
     width: 100% !important;
 }
-.use_cases_container .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+.use_cases_container .nav-tabs .nav-item.show .nav-link,.use_cases_container .nav-tabs .nav-link.active {
     color: white !important;
     border-radius: 16px !important;
     background-color: #4E5AFE !important;
