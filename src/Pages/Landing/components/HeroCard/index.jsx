@@ -1,8 +1,14 @@
 import React from "react";
 import ActionButton from "../../../../Common/ActionButton";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const HeroCard = () => {
+  const navigate = useNavigate()
+  const handleClick = ()=>{
+    navigate('/auth')
+
+  }
   return (
     <>
       <div className="hero_card">
@@ -16,7 +22,7 @@ const HeroCard = () => {
           <div className="helper_text mb-3">
             Own them all on the new data intelligence platform
           </div>
-          <ActionButton px={36} py={12}>
+          <ActionButton px={36} py={12} onClick={handleClick}>
             Explore Demo
           </ActionButton>
         </div>
