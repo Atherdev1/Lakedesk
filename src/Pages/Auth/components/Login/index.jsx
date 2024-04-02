@@ -41,47 +41,49 @@ const Login = () => {
         <label>OR</label>
       </div>
       <div className="login_container mt-5  d-flex flex-column align-items-center">
-        <div className="input_box">
-          <label htmlFor="email" className="input_label">
-            Business Email<span>*</span>
-          </label>
-          <div className="input_group">
-            <span className="icon">
-              <MdOutlineEmail color="lightgray" />
-            </span>
-            <input id="email" type="email" required />
-          </div>
+      <div className="input_box mt-2 mt-lg-3">
+        <label htmlFor="email" className="input_label">
+          Business Email<span>*</span>
+        </label>
+        <div className="input_group">
+          <span className="icon">
+            <MdOutlineEmail color="lightgray" />
+          </span>
+          <input id="email" type="email" required placeholder="Business Email" />
         </div>
+      </div>
 
-        <div className="input_box mt-2 mb-5">
-          <label htmlFor="password" className="input_label">
-            Password<span>*</span>
-          </label>
-          <div className="input_group password">
-            <span className="icon">
-              <MdLockOutline color="lightgray" />
-            </span>
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              required
-            />
-            <span
-              className="eye_icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <FiEyeOff color="lightgray" />
-              ) : (
-                <FiEye color="lightgray" />
-              )}
-            </span>
-          </div>
+      <div className="input_box mt-2 mt-lg-3">
+        <label htmlFor="password" className="input_label">
+          Password<span>*</span>
+        </label>
+        <div className="input_group password">
+          <span className="icon">
+            <MdLockOutline color="lightgray" />
+          </span>
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            required
+            placeholder="Password"
+          />
+          <span
+            className="eye_icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <FiEyeOff color="lightgray" />
+            ) : (
+              <FiEye color="lightgray" />
+            )}
+          </span>
         </div>
-
+      </div>
+        <div className="mt-4 d-flex justify-content-center">
         <ActionButton px={30} py={10}>
           Log In
         </ActionButton>
+      </div>
       </div>
     </>
   );

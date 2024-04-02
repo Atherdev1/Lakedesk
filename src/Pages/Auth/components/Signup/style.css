@@ -1,3 +1,4 @@
+
 .input_box > label{
     font-size: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
     font-weight: 600;
@@ -34,3 +35,49 @@
     transform: translateY(-50%);
 }
 
+.signup_container .react-tel-input .form-control{
+    width: 100% !important;
+}
+.signup_container .flag-dropdown{
+    color: black !important;
+    font-size: 12px !important;
+    font-weight: 500;
+    /* width: 100% !important; */
+}
+
+.signup_container .country-list{
+    width: 280px !important;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0px black;
+}
+.signup_container .form-control:focus{
+    border: 2px solid lightgray;
+    box-shadow: none !important;
+}
+.signup_container .form-control{
+    border: 2px solid lightgray;
+}
+.signup_container .search-box{
+    font-size: 12px !important;
+    font-weight: 500;
+}
+.signup_container .select__control{
+    border: 2px solid lightgray;
+    font-size: 12px;
+    font-weight: 500;
+}
+.css-13cymwt-control:hover{
+    border-color: lightgray !important;
+}
+.signup_container .select__menu{
+    font-size: 12px !important;
+    font-weight: 500;
+}
+::placeholder{
+    font-size: 12px;
+    font-weight: 500;
+}
+.policy_text{
+    font-size: clamp(0.625rem, 0.5795rem + 0.2273vw, 0.75rem);
+    font-weight: 500;
+}
