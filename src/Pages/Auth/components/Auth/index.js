@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Tabs, Tab } from "react-bootstrap";
+
 import "./style.css";
 import SignUp from "../Signup";
 import Login from "../Login";
@@ -41,23 +42,13 @@ const Auth = () => {
     []
   );
   return (
-    <div className="auth_container row   ">
-      <div className="col-6 "> 
+    <div className="auth_container d-flex flex-column flex-md-row">
       <div className="carousel_container d-none d-md-block">
-        <Slider  {...carouselSetting}>
-          
-            {imageData.map((img) => (
-              
-              <img className="crousel-img " src={img} alt=""  />
-            ))}
-          
-        </Slider>
       </div>
-
-      </div>
-     <div className="col-6 ">
      <div className="login_signup_container mt-3 ">
-        <Tabs
+      <p className="help_text">Need help? Write to <span>saas-support@lakedesk.one</span></p>
+      <div className="mt-5 mt-md-0">
+      <Tabs
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
@@ -70,7 +61,9 @@ const Auth = () => {
           </Tab>
         </Tabs>
       </div>
-     </div>
+       
+      </div>
+
      
     </div>
   );

@@ -1,14 +1,23 @@
+.auth_container{
+  height: fit-content;
+  min-height: 100vh;
+}
 .carousel_container {
   background: transparent
     linear-gradient(318deg, #804bff, #244daf 39%, #244daf 77%, #21dbaa 110%) 0 0
     no-repeat padding-box;
+  flex-grow: 1;
+
 }
 .crousel-img {
   object-fit: cover;
   height: 100% !important;
 }
 .login_signup_container {
+  flex-grow: 1;
   padding: 20px;
+  width: 100%;
+  position: relative;
 }
 .login_signup_container .nav-tabs {
   border-bottom: none !important;
@@ -24,11 +33,8 @@
   font-weight: 500;
   border: none;
   border-radius: 0px;
-  border-bottom: 2px solid transparent;
 }
-.login_signup_container .nav-item .nav-link:hover {
-  background-color: #eee;
-}
+
 .login_signup_container .nav-item .nav-link.active {
   color: #4e5afe;
   border: none;
@@ -75,6 +81,17 @@
   transform: translateY(-50%);
 }
 
+.help_text{
+  font-size: clamp(0.625rem, 0.5795rem + 0.2273vw, 0.75rem);
+  font-weight: 500;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.help_text span{
+  font-weight: 700;
+}
+
 /* ------------------------------------ slider --------------------------------------- */
 .slider_container {
   width: 100%;
@@ -84,4 +101,17 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+}
+
+@media screen and (min-width:768px) {
+  .carousel_container, .login_signup_container{
+    width: 50%;
+    padding: 120px 20px;
+  }
+  
+}
+@media screen and (min-width:992px){
+  .login_signup_container{
+    padding: 120px;
+  }
 }
