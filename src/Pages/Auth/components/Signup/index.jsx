@@ -1,175 +1,274 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
-import { MdLockOutline } from "react-icons/md";
-import { FiEye } from "react-icons/fi";
-import { FiEyeOff } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
+import { SiMaterialdesignicons } from "react-icons/si";
+import { FaRegBuilding } from "react-icons/fa";
+import { LiaIndustrySolid } from "react-icons/lia";
+import { LuFunctionSquare } from "react-icons/lu";
+import { MdOutlineAddBusiness } from "react-icons/md";
+
 import PhoneInput from "react-phone-input-2";
 import Select from "react-select";
 import { getData } from "country-list";
 import "react-phone-input-2/lib/style.css";
 import "./style.css";
-import ActionButton from "../../../../Common/ActionButton";
-import RecaptchaButton from "./RecaptchaButton";
+import swal from "sweetalert";
+import Axios from "../../../../Axios";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [data, setData] = useState({});
   const countries = getData();
   const options = countries.map((country) => ({
     value: country.code,
     label: country.name,
   }));
-  const onSubmit = (token) => {
-    console.log("reCAPTCHA token:", token);
-    // Here, you can handle form submission or other actions with the token
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({ ...prev, [name]: value }));
   };
+
+  function isValidEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
+
+  const onSubmit = async (token) => {
+    console.log("token", token);
+    if (!token) swal("Oops", "Signup Failed", "error");
+    if (
+      data.firstName &&
+      data.corporateEmail &&
+      isValidEmail(data.corporateEmail)
+    ) {
+      try {
+        const response = await Axios.post("/api/signup", {
+          ...data,
+          "g-recaptcha-response": token,
+        });
+        swal("", response.data, "success");
+      } catch (error) {
+        swal("Oops", error.message, "error");
+      }
+    } else {
+      // validation
+      swal("Oops", "Signup Failed", "error");
+    }
+  };
+
   useEffect(() => {
-    window.onsubmit = onSubmit;
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
+
+  useEffect(() => {
+    window.onSubmit = onSubmit;
+  }, []);
+
   return (
-    // <div className="signup_container">
-    //   <div className="input_box mt-2 mt-lg-3">
-    //     <label htmlFor="email" className="input_label">
-    //       Business Email<span>*</span>
-    //     </label>
-    //     <div className="input_group">
-    //       <span className="icon">
-    //         <MdOutlineEmail color="lightgray" />
-    //       </span>
-    //       <input
-    //         id="email"
-    //         type="email"
-    //         required
-    //         placeholder="Business Email"
-    //       />
-    //     </div>
-    //   </div>
-    //   <div className="input_box mt-2 mt-lg-3">
-    //     <label htmlFor="password" className="input_label">
-    //       Password<span>*</span>
-    //     </label>
-    //     <div className="input_group password">
-    //       <span className="icon">
-    //         <MdLockOutline color="lightgray" />
-    //       </span>
-    //       <input
-    //         id="password"
-    //         type={showPassword ? "text" : "password"}
-    //         required
-    //         placeholder="Password"
-    //       />
-    //       <span
-    //         className="eye_icon"
-    //         onClick={() => setShowPassword(!showPassword)}
-    //       >
-    //         {showPassword ? (
-    //           <FiEyeOff color="lightgray" />
-    //         ) : (
-    //           <FiEye color="lightgray" />
-    //         )}
-    //       </span>
-    //     </div>
-    //   </div>
-    //   <div className="input_box mt-2 mt-lg-3">
-    //     <label htmlFor="password" className="input_label">
-    //       Phone<span>*</span>
-    //     </label>
-    //     <PhoneInput
-    //       country={"in"}
-    //       value={phone}
-    //       onChange={(phone) => setPhone(phone)}
-    //       enableSearch
-    //     />
-    //   </div>
-    //   <div className="input_box mt-2 mt-lg-3">
-    //     <label htmlFor="password" className="input_label">
-    //       Country<span>*</span>
-    //     </label>
-    //     <Select
-    //       options={options}
-    //       className="country-select"
-    //       classNamePrefix="select"
-    //       placeholder="Select a country"
-    //     />
-    //   </div>
-
-    //   <div className="mt-4 d-flex justify-content-center">
-    //     <button
-    //       type="submit"
-    //       className="g-recaptcha"
-    //       data-sitekey="6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3"
-    //       data-callback="onSubmit"
-    //       data-action="submit"
-    //     >
-    //       SignUp
-    //     </button>
-    //     {/* <ActionButton px={30} py={10}>
-    //       Sign Up
-    //     </ActionButton> */}
-    //   </div>
-    //   <div className="policy_text text-center mt-2 mt-lg-3">
-    //     By submitting this form I agree to Gathr's Privacy Policy and Terms of
-    //     Service
-    //   </div>
-    // </div>
-
-    <form
-      // onSubmit={onSubmit}
-      // action="/api/signup"
-      method="post"
-      id="signup-form"
-    >
-      First Name <input type="text" id="firstName" name="firstName" value="" />
-      Last Name <input type="text" id="lastName" name="lastName" value="" />
-      Corporate Email{" "}
-      <input type="text" id="corporateEmail" name="corporateEmail" value="" />
-      Mobile <input type="text" id="mobile" name="mobile" value="" />
-      Designation{" "}
-      <input type="text" id="designation" name="designation" value="" />
-      Company <input type="text" id="company" name="company" value="" />
-      Job Function{" "}
-      <input type="text" id="jobFunction" name="jobFunction" value="" />
-      Business Use Case{" "}
-      <input type="text" id="businessUseCase" name="businessUseCase" value="" />
-      <div>
-        {/* <div
-          class="grecaptcha-badge"
-          data-style="bottomright"
-          style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: 0px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"
-        >
-          <div class="grecaptcha-logo">
-            <iframe
-              title="reCAPTCHA"
-              width="256"
-              height="60"
-              role="presentation"
-              name="a-hd1mea8tlri6"
-              frameborder="0"
-              scrolling="no"
-              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
-              src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3&amp;co=aHR0cDovL2VjMi0xOC0yMDktMTc1LTk4LmNvbXB1dGUtMS5hbWF6b25hd3MuY29tOjgwODA.&amp;hl=en&amp;v=rz4DvU-cY2JYCwHSTck0_qm-&amp;size=invisible&amp;sa=submit&amp;cb=tsytrk90y9cl"
-            ></iframe>
+    <div className="signup_container">
+      <form id="signup-form" action="">
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="firstName" className="input_label">
+            First Name<span>*</span>
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <CgProfile color="lightgray" />
+            </span>
+            <input
+              id="firstName"
+              name="firstName"
+              value={data.firstName}
+              onChange={handleChange}
+              type="text"
+              placeholder="First Name"
+            />
           </div>
-          <div class="grecaptcha-error"></div>
-          <textarea
-            id="g-recaptcha-response"
-            name="g-recaptcha-response"
-            class="g-recaptcha-response"
-            style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"
-          ></textarea>
         </div>
-        <iframe style="display: none;"></iframe> */}
-        <button
-          type="submit"
-          className="g-recaptcha"
-          data-sitekey="6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3"
-          data-callback="onSubmit"
-          data-action="submit"
-        >
-          SignUp
-        </button>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="lastName" className="input_label">
+            Last Name
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <CgProfile color="lightgray" />
+            </span>
+            <input
+              id="lastName"
+              name="lastName"
+              value={data.lastName}
+              onChange={handleChange}
+              type="text"
+              placeholder="Last Name"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="corporateEmail" className="input_label">
+            Corporate Email<span>*</span>
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <MdOutlineEmail color="lightgray" />
+            </span>
+            <input
+              id="corporateEmail"
+              name="corporateEmail"
+              value={data.corporateEmail}
+              onChange={handleChange}
+              type="email"
+              placeholder="Corporate Email"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="mobile" className="input_label">
+            Mobile
+          </label>
+          <PhoneInput
+            id="mobile"
+            name="mobile"
+            value={data.mobile}
+            onChange={(mobile) =>
+              setData((prev) => ({ ...prev, mobile: mobile }))
+            }
+            country={"in"}
+            enableSearch
+          />
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="designation" className="input_label">
+            Designation
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <SiMaterialdesignicons color="lightgray" />
+            </span>
+            <input
+              id="designation"
+              name="designation"
+              value={data.designation}
+              onChange={handleChange}
+              type="text"
+              placeholder="Designation"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="company" className="input_label">
+            Company
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <FaRegBuilding color="lightgray" />
+            </span>
+            <input
+              id="company"
+              name="company"
+              value={data.company}
+              onChange={handleChange}
+              type="text"
+              placeholder="Company"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="country" className="input_label">
+            Country
+          </label>
+          <Select
+            id="country"
+            name="country"
+            value={options.find((option) => option.label === data.country)}
+            onChange={(country) =>
+              setData((prev) => ({ ...prev, country: country.label }))
+            }
+            options={options}
+            className="country-select"
+            classNamePrefix="select"
+            placeholder="Select a country"
+          />
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="industry" className="input_label">
+            Industry
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <LiaIndustrySolid color="lightgray" />
+            </span>
+            <input
+              id="industry"
+              name="industry"
+              value={data.industry}
+              onChange={handleChange}
+              type="text"
+              placeholder="Industry"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="jobFunction" className="input_label">
+            Job Function
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <LuFunctionSquare color="lightgray" />
+            </span>
+            <input
+              id="jobFunction"
+              name="jobFunction"
+              value={data.jobFunction}
+              onChange={handleChange}
+              type="text"
+              placeholder=" Job Function"
+            />
+          </div>
+        </div>
+        <div className="input_box mt-2 mt-lg-3">
+          <label htmlFor="businessUseCase" className="input_label">
+            Business Use Case
+          </label>
+          <div className="input_group">
+            <span className="icon">
+              <MdOutlineAddBusiness color="lightgray" />
+            </span>
+            <input
+              id="businessUseCase"
+              name="businessUseCase"
+              value={data.businessUseCase}
+              onChange={handleChange}
+              type="text"
+              placeholder=" Business Use Case"
+            />
+          </div>
+        </div>
+        <div className="mt-4 d-flex justify-content-center">
+          <button
+            type="submit"
+            className="g-recaptcha"
+            data-sitekey="6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3"
+            data-callback="onSubmit"
+            data-action="submit"
+          >
+            SignUp
+          </button>
+        </div>
+      </form>
+
+      <div className="policy_text text-center mt-2 mt-lg-3">
+        By submitting this form I agree to Gathr's Privacy Policy and Terms of
+        Service
       </div>
-    </form>
+    </div>
   );
 };
 

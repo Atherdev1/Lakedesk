@@ -8,7 +8,8 @@ import * as Yup from "yup";
 import "./style.css";
 import ActionButton from "../../../../Common/ActionButton";
 import Axios from "../../../../Axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +38,7 @@ const Login = () => {
         try {
           const response = await Axios("/auth/login");
           console.log(response.data);
+          swal("", "Login Successful", "success");
           navigate("/dashboard");
         } catch (error) {
           console.log(error.message);
@@ -76,7 +78,7 @@ const Login = () => {
         <label>OR</label>
       </div>
       <div className="login_container mt-5  d-flex flex-column align-items-center">
-        <form action="" onSubmit={handleSubmit}>
+        <form className="w-100" action="" onSubmit={handleSubmit}>
           <div className="input_box mt-2 mt-lg-3">
             <label htmlFor="email" className="input_label">
               Business Email<span>*</span>
@@ -100,7 +102,7 @@ const Login = () => {
             </small>
           </div>
 
-          <div className="input_box mt-2 mt-lg-3">
+          <div className="input_box ">
             <label htmlFor="password" className="input_label">
               Password<span>*</span>
             </label>
@@ -136,7 +138,9 @@ const Login = () => {
               )}
             </small>
           </div>
-
+          <div className=" d-flex justify-content-end forget_password">
+            <Link to="/auth/forget-password">Forget password?</Link>
+          </div>
           <div className="mt-4 d-flex justify-content-center">
             <ActionButton px={30} py={10}>
               Log In

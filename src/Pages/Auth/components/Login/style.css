@@ -1,32 +1,36 @@
-.social_login{
-    width: 20px;
-    height: fit-content;
+.social_login {
+  width: 20px;
+  height: fit-content;
 }
-.social_login img{
-    width: 100%;
+.social_login img {
+  width: 100%;
 }
-.or_text_wrapper{
-    height: 4px;
-    position: relative;
-    display: flex;
-    align-items: center;
+.or_text_wrapper {
+  height: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-.or_text_wrapper .line{
-    border-bottom: 1px solid black;
-    width: 100%;
+.or_text_wrapper .line {
+  border-bottom: 1px solid black;
+  width: 100%;
 }
-.or_text_wrapper label{
-    background-color: white;
-    padding: 4px 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    font-weight: 600;
+.or_text_wrapper label {
+  background-color: white;
+  padding: 4px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
 }
-::placeholder{
-    font-size: 12px;
-    font-weight: 500;
+.forget_password a {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
 }
-
+::placeholder {
+  font-size: 12px;
+  font-weight: 500;
+}

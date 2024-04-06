@@ -55,8 +55,10 @@ const Header = () => {
           <span role="button">
             <IoSearchOutline />
           </span>
-          <span role="button" className="ms-sm-2">
-            {windowSize.width < 576 ? <CiLogin /> : "Login"}
+          <span role="button" className="ms-sm-2 login_text">
+            <Link to="/auth">
+              {windowSize.width < 576 ? <CiLogin /> : "Login"}
+            </Link>
           </span>
           <span role="button">
             {windowSize.width < 576 ? <MdOutlineCall /> : "Contact Us"}
