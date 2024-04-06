@@ -3,11 +3,46 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import "./style.css";
 import ActionButton from "../../../../Common/ActionButton";
+import Axios from "../../../../Axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: Yup.object().shape({
+        email: Yup.string().email("Invalid Email").required("Email Required"),
+        password: Yup.string()
+          .required("Password is required")
+          .matches(/[A-Z]/, "Atleast one upper case letter")
+          .matches(/[a-z]/, "Atleast one lower case letter")
+          .matches(/[0-9]/, "Atleast one number")
+          .matches(
+            /[\^$*.\[\]{}()?\-"!@#%&/\\,><':;|_~`]/,
+            "Atleast one special character"
+          )
+          .min(8, "Atleast 8 Characters"),
+      }),
+      onSubmit: async (values) => {
+        try {
+          const response = await Axios("/auth/login");
+          console.log(response.data);
+          navigate("/dashboard");
+        } catch (error) {
+          console.log(error.message);
+        }
+      },
+    });
   return (
     <>
       <div className="social_login_wrapper d-flex justify-content-center py-4 gap-3">
@@ -41,49 +76,73 @@ const Login = () => {
         <label>OR</label>
       </div>
       <div className="login_container mt-5  d-flex flex-column align-items-center">
-      <div className="input_box mt-2 mt-lg-3">
-        <label htmlFor="email" className="input_label">
-          Business Email<span>*</span>
-        </label>
-        <div className="input_group">
-          <span className="icon">
-            <MdOutlineEmail color="lightgray" />
-          </span>
-          <input id="email" type="email" required placeholder="Business Email" />
-        </div>
-      </div>
+        <form action="" onSubmit={handleSubmit}>
+          <div className="input_box mt-2 mt-lg-3">
+            <label htmlFor="email" className="input_label">
+              Business Email<span>*</span>
+            </label>
+            <div className="input_group">
+              <span className="icon">
+                <MdOutlineEmail color="lightgray" />
+              </span>
+              <input
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="email"
+                placeholder="Business Email"
+              />
+            </div>
+            <small className="text-danger">
+              {touched.email && errors.email ? errors.email : <>&nbsp;</>}
+            </small>
+          </div>
 
-      <div className="input_box mt-2 mt-lg-3">
-        <label htmlFor="password" className="input_label">
-          Password<span>*</span>
-        </label>
-        <div className="input_group password">
-          <span className="icon">
-            <MdLockOutline color="lightgray" />
-          </span>
-          <input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            required
-            placeholder="Password"
-          />
-          <span
-            className="eye_icon"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? (
-              <FiEyeOff color="lightgray" />
-            ) : (
-              <FiEye color="lightgray" />
-            )}
-          </span>
-        </div>
-      </div>
-        <div className="mt-4 d-flex justify-content-center">
-        <ActionButton px={30} py={10}>
-          Log In
-        </ActionButton>
-      </div>
+          <div className="input_box mt-2 mt-lg-3">
+            <label htmlFor="password" className="input_label">
+              Password<span>*</span>
+            </label>
+            <div className="input_group password">
+              <span className="icon">
+                <MdLockOutline color="lightgray" />
+              </span>
+              <input
+                id="password"
+                name="password"
+                value={values.password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <span
+                className="eye_icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FiEyeOff color="lightgray" />
+                ) : (
+                  <FiEye color="lightgray" />
+                )}
+              </span>
+            </div>
+            <small className="text-danger">
+              {touched.password && errors.password ? (
+                errors.password
+              ) : (
+                <>&nbsp;</>
+              )}
+            </small>
+          </div>
+
+          <div className="mt-4 d-flex justify-content-center">
+            <ActionButton px={30} py={10}>
+              Log In
+            </ActionButton>
+          </div>
+        </form>
       </div>
     </>
   );
