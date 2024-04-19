@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { SiMaterialdesignicons } from "react-icons/si";
@@ -14,19 +14,28 @@ import "react-phone-input-2/lib/style.css";
 import "./style.css";
 import swal from "sweetalert";
 import Axios from "../../../../Axios";
+import ReCAPTCHA from "react-google-recaptcha";
+import ActionButton from "../../../../Common/ActionButton";
 
 const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState({});
+  const [formData, setFormData] = useState({});
   const countries = getData();
   const options = countries.map((country) => ({
     value: country.code,
     label: country.name,
   }));
+  const recaptchaRef = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // This will trigger the invisible reCAPTCHA
+    recaptchaRef.current.execute();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   function isValidEmail(email) {
@@ -34,20 +43,31 @@ const Signup = () => {
     return regex.test(email);
   }
 
-  const onSubmit = async (token) => {
-    console.log("token", token);
-    if (!token) swal("Oops", "Signup Failed", "error");
+  const onReCAPTCHAChange = async (captchaCode) => {
+    if (!captchaCode) {
+      swal("Oops", "Signup Failed", "error");
+      return;
+    }
+    console.log(formData, captchaCode);
     if (
-      data.firstName &&
-      data.corporateEmail &&
-      isValidEmail(data.corporateEmail)
+      formData.firstName &&
+      formData.corporateEmail &&
+      isValidEmail(formData.corporateEmail)
     ) {
       try {
-        const response = await Axios.post("/api/signup", {
-          ...data,
-          "g-recaptcha-response": token,
+        const response = await Axios({
+          method: "POST",
+          url: "/api/signup",
+          headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
+          params: {
+            ...formData,
+            "g-recaptcha-response": captchaCode,
+          },
         });
-        swal("", response.data, "success");
+        swal("", response.formData, "success");
       } catch (error) {
         swal("Oops", error.message, "error");
       }
@@ -56,7 +76,6 @@ const Signup = () => {
       swal("Oops", "Signup Failed", "error");
     }
   };
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://www.google.com/recaptcha/api.js";
@@ -66,10 +85,6 @@ const Signup = () => {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
-
-  useEffect(() => {
-    window.onSubmit = onSubmit;
   }, []);
 
   return (
@@ -86,7 +101,7 @@ const Signup = () => {
             <input
               id="firstName"
               name="firstName"
-              value={data.firstName}
+              value={formData.firstName}
               onChange={handleChange}
               type="text"
               placeholder="First Name"
@@ -104,7 +119,7 @@ const Signup = () => {
             <input
               id="lastName"
               name="lastName"
-              value={data.lastName}
+              value={formData.lastName}
               onChange={handleChange}
               type="text"
               placeholder="Last Name"
@@ -122,7 +137,7 @@ const Signup = () => {
             <input
               id="corporateEmail"
               name="corporateEmail"
-              value={data.corporateEmail}
+              value={formData.corporateEmail}
               onChange={handleChange}
               type="email"
               placeholder="Corporate Email"
@@ -136,9 +151,9 @@ const Signup = () => {
           <PhoneInput
             id="mobile"
             name="mobile"
-            value={data.mobile}
+            value={formData.mobile}
             onChange={(mobile) =>
-              setData((prev) => ({ ...prev, mobile: mobile }))
+              setFormData((prev) => ({ ...prev, mobile: mobile }))
             }
             country={"in"}
             enableSearch
@@ -155,7 +170,7 @@ const Signup = () => {
             <input
               id="designation"
               name="designation"
-              value={data.designation}
+              value={formData.designation}
               onChange={handleChange}
               type="text"
               placeholder="Designation"
@@ -173,7 +188,7 @@ const Signup = () => {
             <input
               id="company"
               name="company"
-              value={data.company}
+              value={formData.company}
               onChange={handleChange}
               type="text"
               placeholder="Company"
@@ -187,9 +202,9 @@ const Signup = () => {
           <Select
             id="country"
             name="country"
-            value={options.find((option) => option.label === data.country)}
+            value={options.find((option) => option.label === formData.country)}
             onChange={(country) =>
-              setData((prev) => ({ ...prev, country: country.label }))
+              setFormData((prev) => ({ ...prev, country: country.label }))
             }
             options={options}
             className="country-select"
@@ -208,7 +223,7 @@ const Signup = () => {
             <input
               id="industry"
               name="industry"
-              value={data.industry}
+              value={formData.industry}
               onChange={handleChange}
               type="text"
               placeholder="Industry"
@@ -226,7 +241,7 @@ const Signup = () => {
             <input
               id="jobFunction"
               name="jobFunction"
-              value={data.jobFunction}
+              value={formData.jobFunction}
               onChange={handleChange}
               type="text"
               placeholder=" Job Function"
@@ -244,7 +259,7 @@ const Signup = () => {
             <input
               id="businessUseCase"
               name="businessUseCase"
-              value={data.businessUseCase}
+              value={formData.businessUseCase}
               onChange={handleChange}
               type="text"
               placeholder=" Business Use Case"
@@ -252,15 +267,15 @@ const Signup = () => {
           </div>
         </div>
         <div className="mt-4 d-flex justify-content-center">
-          <button
-            type="submit"
-            className="g-recaptcha"
-            data-sitekey="6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3"
-            data-callback="onSubmit"
-            data-action="submit"
-          >
-            SignUp
-          </button>
+          <ActionButton px={30} py={10} onClick={handleSubmit}>
+            Sign Up
+          </ActionButton>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey="6LfkLKopAAAAAFQMLwWpqPElw-Qiy0qGle9_xfq3"
+            size="invisible"
+            onChange={onReCAPTCHAChange}
+          />
         </div>
       </form>
 
